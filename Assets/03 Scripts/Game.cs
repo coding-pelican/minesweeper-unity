@@ -76,7 +76,11 @@ public class Game : MonoBehaviour {
                     continue;
                 }
                 cell.number = CountMines(x, y);
-                // TODO : 51:14
+                if (cell.number > 0) {
+                    cell.type = Cell.Type.Number;
+                }
+                cell.revealed = true;
+                _state[x, y] = cell;
             }
         }
     }
