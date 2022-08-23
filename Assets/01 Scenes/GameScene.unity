@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 268603322}
   - component: {fileID: 268603324}
   - component: {fileID: 268603323}
+  - component: {fileID: 268603325}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -288,6 +289,32 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &268603325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268603321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681c049864bee6c41beae6e1b7a1404a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileUnknown: {fileID: 11400000, guid: 3b10e351f0d09674abc1fb01452a2bbf, type: 2}
+  tileEmpty: {fileID: 11400000, guid: 0fa02e1536fcaee428f44494703c111c, type: 2}
+  tileMine: {fileID: 11400000, guid: 847b39545e680664b820f00272925a98, type: 2}
+  tileExploded: {fileID: 11400000, guid: 8cfde216f05f08f4aa6d602443e51c95, type: 2}
+  tileFlag: {fileID: 11400000, guid: 61e4b250259b83d449f9628000285cd0, type: 2}
+  tileNums:
+  - {fileID: 11400000, guid: 7815b4337d6f8f342b33e8f7df9be507, type: 2}
+  - {fileID: 11400000, guid: 4e8c839151badc7438b47beab9377e59, type: 2}
+  - {fileID: 11400000, guid: b1acaa8c2eb88fd4eb5e309e38bc3f86, type: 2}
+  - {fileID: 11400000, guid: 11e27b4127afffa44a701d9ef5121776, type: 2}
+  - {fileID: 11400000, guid: 1fc4764584476e74ea6e2c62cb979ab7, type: 2}
+  - {fileID: 11400000, guid: 49b28d0c1f2ddfa4cbc57935981f3212, type: 2}
+  - {fileID: 11400000, guid: 45f94d2048e845d4db1bfc91582beff5, type: 2}
+  - {fileID: 11400000, guid: 60db9cd2858c5eb46baa357f956a01e8, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
