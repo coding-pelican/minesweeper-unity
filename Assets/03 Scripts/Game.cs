@@ -69,6 +69,37 @@ public class Game : MonoBehaviour {
     }
 
     private void GenerateNumbers() {
-        // TODO : 45:10
+        for (var x = 0; x < width; x++) {
+            for (var y = 0; y < height; y++) {
+                Cell cell = _state[x, y];
+                if (cell.type == Cell.Type.Mine) {
+                    continue;
+                }
+                cell.number = CountMines(x, y);
+                // TODO : 51:14
+            }
+        }
     }
+
+    private int CountMines(int cellX, int cellY) {
+        int count = 0;
+        for (var adjacentX = -1; adjacentX <= 1; adjacentX++) {
+            for (var adjacentY = -1; adjacentY <= 1; adjacentY++) {
+                if ((adjacentX == 0) && (adjacentY == 0)) {
+                    continue;
+                }
+                int x = cellX + adjacentX;
+                int y = cellY + adjacentY;
+                if (x < 0 || x >= width || y < 0 || y >= height) {
+                    continue;
+                }
+                if (_state[x, y].type == Cell.Type.Mine) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+
 }
