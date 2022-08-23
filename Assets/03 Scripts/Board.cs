@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent(typeof(Tilemap))]
 public class Board : MonoBehaviour {
     public Tilemap tilemap { get; private set; }
     public Tile tileUnknown;
@@ -24,7 +25,7 @@ public class Board : MonoBehaviour {
         for (var x = 0; x < width; x++) {
             for (var y = 0; y < height; y++) {
                 Cell cell = state[x, y];
-                cell.number = Mathf.Clamp(cell.number, 0, 8);
+                Mathf.Clamp(cell.number, 0, 8);
                 tilemap.SetTile(cell.position, GetTile(cell));
             }
         }
@@ -40,12 +41,14 @@ public class Board : MonoBehaviour {
         }
     }
 
-    private Tile GetRevealedTile(Cell cell) => cell.type switch {
-        Cell.Type.Empty => tileEmpty,
-        Cell.Type.Mine => tileMine,
-        Cell.Type.Number => GetNumberTile(cell),
-        _ => null
-    };
+    private Tile GetRevealedTile(Cell cell) {
+        return cell.type switch {
+            Cell.Type.Empty => tileEmpty,
+            Cell.Type.Mine => cell.exploded ? tileExploded : tileMine,
+            Cell.Type.Number => GetNumberTile(cell),
+            _ => null,
+        };
+    }
 
     private Tile GetNumberTile(Cell cell) => tileNums[cell.number - 1];
 }

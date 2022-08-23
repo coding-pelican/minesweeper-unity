@@ -10,25 +10,26 @@ public class Game : MonoBehaviour {
     public int mineCount = 32;
 
     private Board _board;
-    private Cell[,] state;
+    private Cell[,] _state;
 
     public Board Board { get => _board; set => _board = value; }
 
     private void Awake() {
+        Application.targetFrameRate = 60;
         Board = GetComponentInChildren<Board>();
     }
 
     private void Start() {
         NewGame();
+    }
+
+    private void NewGame() {
+        _state = new Cell[width, height];
         GenerateCells();
         GenerateMines();
         GenerateNumbers();
         SetCamera();
-        Board.Draw(state);
-    }
-
-    private void NewGame() {
-        state = new Cell[width, height];
+        Board.Draw(_state);
     }
 
     private void SetCamera() {
@@ -42,19 +43,18 @@ public class Game : MonoBehaviour {
             for (var y = 0; y < height; y++) {
                 var cell = new Cell {
                     position = new Vector3Int(x, y, 0),
-                    type = Cell.Type.Empty,
+                    type = Cell.Type.Empty
                 };
-                state[x, y] = cell;
+                _state[x, y] = cell;
             }
         }
     }
 
     private void GenerateMines() {
-        for (var i = 0; i < mineCount; i++) {
+        for (int i = 0; i < mineCount; i++) {
             int x = Random.Range(0, width);
             int y = Random.Range(0, height);
-
-            while (state[x, y].type == Cell.Type.Mine) {
+            while (_state[x, y].type == Cell.Type.Mine) {
                 x++;
                 if (x >= width) {
                     x = 0;
@@ -64,12 +64,11 @@ public class Game : MonoBehaviour {
                     }
                 }
             }
-
-            state[x, y].type = Cell.Type.Mine;
+            _state[x, y].type = Cell.Type.Mine;
         }
     }
 
-    private void GenerateNumbers() { 
-    
+    private void GenerateNumbers() {
+        // TODO : 45:10
     }
 }
