@@ -25,7 +25,7 @@ public class Board : MonoBehaviour {
         for (var x = 0; x < width; x++) {
             for (var y = 0; y < height; y++) {
                 Cell cell = state[x, y];
-                Mathf.Clamp(cell.number, 0, 8);
+                cell.number = Mathf.Clamp(cell.number, 0, 8);
                 tilemap.SetTile(cell.position, GetTile(cell));
             }
         }
